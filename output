@@ -1,0 +1,29 @@
+make -f Makefile.verilate build                                                                                                                                   
+                                                                                    
+-- VERILATE ----------------         
+/home/katie/verilator/bin/verilator -cc --exe -x-assign 0 -Wall --trace test.sv sim_main.cpp
+%Warning-UNOPTFLAT: test.sv:29:21: Signal unoptimizable: Circular combinational logic: 'test.store_len'
+   29 |     logic           store_len;                                                                                                                                   
+      |                     ^~~~~~~~~
+                    ... For warning description see https://verilator.org/warn/UNOPTFLAT?v=5.024
+                    ... Use "/* verilator lint_off UNOPTFLAT */" and lint_on around source to disable this message.
+                    test.sv:29:21:      Example path: test.store_len
+                    test.sv:51:26:      Example path: ASSIGNW
+                    test.sv:24:21:      Example path: test.test_len_next
+                    test.sv:60:5:      Example path: ALWAYS
+                    test.sv:29:21:      Example path: test.store_len
+%Warning-UNOPTFLAT: test.sv:30:21: Signal unoptimizable: Circular combinational logic: 'test.incr_count'
+   30 |     logic           incr_count;
+      |                     ^~~~~~~~~~                                                                                                                                   
+                    test.sv:30:21:      Example path: test.incr_count                                                                                                                                                                                                                                                                             
+                    test.sv:45:23:      Example path: ASSIGNW
+                    test.sv:27:21:      Example path: test.count_next
+                    test.sv:60:5:      Example path: ALWAYS
+                    test.sv:29:21:      Example path: test.store_len
+                    test.sv:51:26:      Example path: ASSIGNW
+                    test.sv:24:21:      Example path: test.test_len_next
+                    test.sv:60:5:      Example path: ALWAYS
+%Error: Exiting due to 2 warning(s)
+make: *** [Makefile.verilate:60: build] Error 1
+
+
